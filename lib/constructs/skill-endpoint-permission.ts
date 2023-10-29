@@ -37,6 +37,7 @@ export class SkillEndpointPermission extends Construct implements ISkillEndpoint
     [SkillType.SMART_HOME]: 'alexa-connectedhome.amazon.com',
   };
 
+  private readonly skillType: SkillType;
   private readonly handler: IFunction;
   private readonly permission: CfnPermission;
   private readonly policy: AwsCustomResourcePolicy;
@@ -49,6 +50,8 @@ export class SkillEndpointPermission extends Construct implements ISkillEndpoint
    */
   constructor(scope: Construct, id: string, props: SkillEndpointProps) {
     super(scope, id);
+
+    this.skillType = props.skillType;
 
     this.permission = new CfnPermission(this, 'InitialSkillPermission', {
       functionName: props.handler.functionArn,
@@ -75,6 +78,10 @@ export class SkillEndpointPermission extends Construct implements ISkillEndpoint
    * @returns An IDependable object representing the configured permission.
    */
   public configureSkillId(scope: Construct, id: string, skill: ISkill): IDependable {
+    if (this.skillType !== skill.skillType) {
+      throw new Error(`Permission was intended for skillType ${this.skillType}, but skill has ${skill.skillType}`);
+    }
+
     const parent = new Construct(scope, id);
     new AwsCustomResource(parent, 'RemovePermission', {
       policy: this.policy,
@@ -111,7 +118,7 @@ export class SkillEndpointPermission extends Construct implements ISkillEndpoint
       parameters: {
         FunctionName: this.handler.functionArn,
         StatementId: this.permission.attrId,
-        Principal: this.principals[skill?.skillType ?? SkillType.CUSTOM],
+        Principal: this.principals[skill?.skillType ?? this.skillType],
         Action: 'lambda:InvokeFunction',
         EventSourceToken: skill?.skillId,
       },
