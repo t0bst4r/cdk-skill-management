@@ -60,4 +60,4 @@ jobs:
           twine upload dist/jsii/python/*
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: pypi-${{ secrets.TWINE_AUTH_TOKEN }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_AUTH_TOKEN }}
