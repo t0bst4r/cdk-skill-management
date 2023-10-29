@@ -3,6 +3,7 @@ on:
   pull_request:
     types:
       - opened
+      - reopened
       - synchronize
 
 jobs:
@@ -11,5 +12,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/workflows/.setup.yml
-      - uses: ./.github/workflows/.build.yml
+      - uses: ./.github/actions/setup-jsii
+      - uses: ./.github/actions/build

@@ -1,0 +1,20 @@
+name: 'Build'
+description: 'Install, build, test and package this project'
+runs:
+  using: composite
+  steps:
+    - name: Install
+      shell: bash
+      run: npm ci
+    - name: Lint
+      shell: bash
+      run: npm run lint
+    - name: Build
+      shell: bash
+      run: npm run build
+    - name: Test
+      shell: bash
+      run: npm test
+    - name: Package
+      shell: bash
+      run: npm run package

@@ -26,22 +26,24 @@
     "build": "npm run build:jsii && npm run build:handler",
     "build:jsii": "jsii",
     "build:handler": "esbuild --bundle src/handlers/ask-custom-resource/index.ts --outfile=dist/src/handlers/ask-custom-resource/index.js --minify --format=esm",
-    "package": "jsii-pacmak"
+    "package": "jsii-pacmak",
+    "release": "release-it"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.101.0",
     "constructs": "^10.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.6",
+    "@release-it/conventional-changelog": "^7.0.2",
     "@types/aws-lambda": "^8.10.125",
+    "@types/jest": "^29.5.6",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "ask-smapi-model": "^1.24.0",
     "ask-smapi-sdk": "^1.3.0",
-    "esbuild": "^0.19.5",
     "aws-cdk-lib": "2.101.0",
     "constructs": "10.0.0",
+    "esbuild": "^0.19.5",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.4.3",
@@ -50,6 +52,7 @@
     "jsii": "^5.2.14",
     "jsii-pacmak": "^1.90.0",
     "prettier": "^3.0.3",
+    "release-it": "^16.2.1",
     "typescript": "^5.2.2"
   },
   "stability": "stable",

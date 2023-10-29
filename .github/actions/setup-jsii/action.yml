@@ -1,0 +1,23 @@
+name: 'Setup JSII'
+description: 'Setup all dependencies needed for JSII'
+inputs:
+  node-version:
+    description: 'NodeJS Version to use'
+    default: '18'
+  python:
+    description: "Whether to setup python or not (true or false)"
+    default: "true"
+  python-version:
+    description: 'Python Version to use'
+    default: '3.11'
+runs: 
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+    - if: github.event.inputs.python == 'true' || github.event.inputs.python == true
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}

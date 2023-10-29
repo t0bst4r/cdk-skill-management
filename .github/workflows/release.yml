@@ -9,9 +9,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/workflows/.setup.yml
-      - uses: ./.github/workflows/.build.yml
-      - name: Publish to NPM
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - uses: ./.github/actions/setup-jsii
+      - uses: ./.github/actions/build
