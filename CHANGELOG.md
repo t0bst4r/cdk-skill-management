@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.1...v1.0.2) (2023-10-29)
+
+
+### Bug Fixes
+
+* **project:** added pypi publishing ([2ec3115](https://github.com/t0bst4r/cdk-skill-management/commit/2ec3115ab1dc2a06b724237962e9a8acfcae9c7c))
+
 ## [1.0.1](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.0...v1.0.1) (2023-10-29)
 
 
