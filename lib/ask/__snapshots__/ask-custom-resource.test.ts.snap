@@ -54,7 +54,7 @@ exports[`AskCustomResource 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "b0abcd4386b0c765d5354f12fb62cd61d7ca5a1bce853bac1869d7c79aa33744.zip",
+          "S3Key": "94210fd5b4c9d3515eb4e015e5c5edbcb077ffcee62c9979b71ea5eedf5b3ddb.zip",
         },
         "Handler": "__entrypoint__.handler",
         "MemorySize": 128,
