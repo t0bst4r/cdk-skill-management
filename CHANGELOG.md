@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.3...v1.0.4) (2023-10-29)
+
+
+### Bug Fixes
+
+* **project:** removed pypi prefix from twine password ([e4bbae7](https://github.com/t0bst4r/cdk-skill-management/commit/e4bbae7b4b4a49f64a442442275a1e3c43438b18))
+
 ## [1.0.3](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.2...v1.0.3) (2023-10-29)
 
 
