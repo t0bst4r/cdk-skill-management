@@ -5,6 +5,7 @@ import {StandardSmapiClientBuilder} from 'ask-smapi-sdk';
 export const handler: CdkCustomResourceHandler = async event => {
   const sdkCall: AskSdkCall | undefined = getSdkCall(event.RequestType, event.ResourceProperties);
   if (!sdkCall) {
+    console.log(`No SDK call configured for ${event.RequestType}`);
     return {};
   }
 
