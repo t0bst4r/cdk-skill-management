@@ -13,7 +13,13 @@ exports[`AskCustomResource 1`] = `
     "AccountLinkingC99A8611": {
       "DeletionPolicy": "Delete",
       "Properties": {
-        "Authentication": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomASKCustomResourceProviderHandlerF5F0D5CE",
+            "Arn",
+          ],
+        },
+        "authentication": {
           "Fn::Join": [
             "",
             [
@@ -33,14 +39,8 @@ exports[`AskCustomResource 1`] = `
             ],
           ],
         },
-        "Delete": "{"action":"deleteAccountLinkingInfoV1","parameters":["My-Skill-Id","development"]}",
-        "ServiceToken": {
-          "Fn::GetAtt": [
-            "CustomASKCustomResourceProviderHandlerF5F0D5CE",
-            "Arn",
-          ],
-        },
-        "Update": "{"action":"updateAccountLinkingInfoV1","parameters":["My-Skill-Id","development",{"accountLinkingRequest":{"my":1,"awesome":2,"props":3}}]}",
+        "delete": "{"action":"deleteAccountLinkingInfoV1","parameters":["My-Skill-Id","development"]}",
+        "update": "{"action":"updateAccountLinkingInfoV1","parameters":["My-Skill-Id","development",{"accountLinkingRequest":{"my":1,"awesome":2,"props":3}}]}",
       },
       "Type": "Custom::ASK",
       "UpdateReplacePolicy": "Delete",

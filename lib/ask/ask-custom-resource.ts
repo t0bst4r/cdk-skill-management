@@ -61,7 +61,6 @@ export class AskCustomResource extends Resource {
     this.customResource = new CustomResource(this, 'Resource', {
       resourceType: 'Custom::ASK',
       serviceToken: this.provider.serviceToken,
-      pascalCaseProperties: true,
       removalPolicy: props.removalPolicy,
       properties: {
         authentication: props.authenticationConfiguration,
