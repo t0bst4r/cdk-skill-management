@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountLinking 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "ASK679f53fac002430cb0da5b7982bd2287F652036F": {
+      "DependsOn": [
+        "ASK679f53fac002430cb0da5b7982bd2287ServiceRole0105EF68",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "1e03f4c27327f8b27d71adf79f3ca7a5451b3373da264c9f2f849602feb27ce9.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "ASK679f53fac002430cb0da5b7982bd2287ServiceRole0105EF68",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 120,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ASK679f53fac002430cb0da5b7982bd2287ServiceRole0105EF68": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "AccountLinkingC99A8611": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "Authentication": {
+          "Fn::Join": [
+            "",
+            [
+              "{{resolve:secretsmanager:arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":secretsmanager:",
+              {
+                "Ref": "AWS::Region",
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId",
+              },
+              ":secret:/Skill/Credentials:SecretString:::}}",
+            ],
+          ],
+        },
+        "Delete": "{"action":"deleteAccountLinkingInfoV1","parameters":["My-Skill-Id","development"]}",
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "ASK679f53fac002430cb0da5b7982bd2287F652036F",
+            "Arn",
+          ],
+        },
+        "Update": "{"action":"updateAccountLinkingInfoV1","parameters":["My-Skill-Id","development",{"accountLinkingRequest":{"authenticationFlowType":"AUTH_CODE","authorizationUrl":"https://example.com/auth/authorize","accessTokenUrl":"https://example.com/auth/token","accessTokenScheme":"REQUEST_BODY_CREDENTIALS","clientId":"client-id","clientSecret":"client-secret","scopes":["smart_home"]}}]}",
+      },
+      "Type": "Custom::ASK",
+      "UpdateReplacePolicy": "Delete",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
