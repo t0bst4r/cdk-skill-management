@@ -266,7 +266,7 @@ exports[`SkillEndpointPermission 1`] = `
                   "Id",
                 ],
               },
-              "","Principal":"alexa-appkit.amazon.com","Action":"lambda:InvokeFunction"},"physicalResourceId":{"id":"AddPermission-c8f28818e7e4b88e6f3f3de6c0841e1cf214663817-no-skill"}}",
+              "","Principal":"alexa-connectedhome.amazon.com","Action":"lambda:InvokeFunction"},"physicalResourceId":{"id":"AddPermission-c8f28818e7e4b88e6f3f3de6c0841e1cf214663817-no-skill"}}",
             ],
           ],
         },

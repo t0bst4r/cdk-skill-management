@@ -8,7 +8,7 @@
     "lint:fix": "eslint . --fix",
     "build": "npm run build:jsii && npm run build:handler",
     "build:jsii": "jsii",
-    "build:handler": "esbuild --bundle src/handlers/ask-custom-resource/index.ts --outfile=dist/src/handlers/ask-custom-resource/index.js --minify --format=esm --platform=node",
+    "build:handler": "esbuild --bundle src/handlers/ask-custom-resource/index.ts --outfile=dist/src/handlers/ask-custom-resource/index.js --minify --format=cjs --platform=node",
     "package": "jsii-pacmak",
     "test": "jest",
     "commitlint": "commitlint --edit"
