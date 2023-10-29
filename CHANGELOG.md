@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.7...v1.0.8) (2023-10-29)
+
+
+### Bug Fixes
+
+* **constructs:** changed module type of ask handler ([48ffb9c](https://github.com/t0bst4r/cdk-skill-management/commit/48ffb9cd818d6613485b27cc08351253d0cb5a98))
+
 ## [1.0.7](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.6...v1.0.7) (2023-10-29)
 
 
