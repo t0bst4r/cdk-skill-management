@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.10](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.9...v1.0.10) (2023-10-29)
+
+
+### Bug Fixes
+
+* **constructs:** removed camelCaseProperties from ask custom resource ([572f67f](https://github.com/t0bst4r/cdk-skill-management/commit/572f67f5fc7c25b68a56532fa98d8f07d89c38ee))
+
 ## [1.0.9](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.8...v1.0.9) (2023-10-29)
 
 
