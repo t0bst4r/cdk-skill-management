@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.5...v1.0.6) (2023-10-29)
+
+
+### Bug Fixes
+
+* **constructs:** grant Alexa Role access to skill package ([ecbd28d](https://github.com/t0bst4r/cdk-skill-management/commit/ecbd28d4e76905f754d8cbe110ff079d5c439cf5))
+
 ## [1.0.5](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.4...v1.0.5) (2023-10-29)
 
 
