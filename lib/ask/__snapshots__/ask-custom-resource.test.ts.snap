@@ -10,60 +10,6 @@ exports[`AskCustomResource 1`] = `
     },
   },
   "Resources": {
-    "ASK679f53fac002430cb0da5b7982bd2287F652036F": {
-      "DependsOn": [
-        "ASK679f53fac002430cb0da5b7982bd2287ServiceRole0105EF68",
-      ],
-      "Properties": {
-        "Code": {
-          "S3Bucket": {
-            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
-          },
-          "S3Key": "1e03f4c27327f8b27d71adf79f3ca7a5451b3373da264c9f2f849602feb27ce9.zip",
-        },
-        "Handler": "index.handler",
-        "Role": {
-          "Fn::GetAtt": [
-            "ASK679f53fac002430cb0da5b7982bd2287ServiceRole0105EF68",
-            "Arn",
-          ],
-        },
-        "Runtime": "nodejs18.x",
-        "Timeout": 120,
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "ASK679f53fac002430cb0da5b7982bd2287ServiceRole0105EF68": {
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "lambda.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": [
-          {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition",
-                },
-                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-              ],
-            ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
     "AccountLinkingC99A8611": {
       "DeletionPolicy": "Delete",
       "Properties": {
@@ -90,7 +36,7 @@ exports[`AskCustomResource 1`] = `
         "Delete": "{"action":"deleteAccountLinkingInfoV1","parameters":["My-Skill-Id","development"]}",
         "ServiceToken": {
           "Fn::GetAtt": [
-            "ASK679f53fac002430cb0da5b7982bd2287F652036F",
+            "CustomASKCustomResourceProviderHandlerF5F0D5CE",
             "Arn",
           ],
         },
@@ -98,6 +44,52 @@ exports[`AskCustomResource 1`] = `
       },
       "Type": "Custom::ASK",
       "UpdateReplacePolicy": "Delete",
+    },
+    "CustomASKCustomResourceProviderHandlerF5F0D5CE": {
+      "DependsOn": [
+        "CustomASKCustomResourceProviderRoleB79D76EE",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "b0abcd4386b0c765d5354f12fb62cd61d7ca5a1bce853bac1869d7c79aa33744.zip",
+        },
+        "Handler": "__entrypoint__.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomASKCustomResourceProviderRoleB79D76EE",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomASKCustomResourceProviderRoleB79D76EE": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
     },
   },
   "Rules": {

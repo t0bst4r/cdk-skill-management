@@ -1,9 +1,16 @@
-import {CustomResource, Duration, IResolvable, Lazy, RemovalPolicy, Resource, Stack} from 'aws-cdk-lib';
+import {
+  CustomResource,
+  CustomResourceProvider,
+  CustomResourceProviderRuntime,
+  Duration,
+  IResolvable,
+  Lazy,
+  RemovalPolicy,
+  Resource,
+  Stack,
+} from 'aws-cdk-lib';
 import {SkillAuthenticationConfiguration} from '../constructs/skill';
 import {Construct} from 'constructs';
-import {Code, IFunction, Runtime, SingletonFunction} from 'aws-cdk-lib/aws-lambda';
-import {AwsCustomResource} from 'aws-cdk-lib/custom-resources';
-import {IGrantable, IPrincipal} from 'aws-cdk-lib/aws-iam';
 import {AskSdkCall} from './ask-sdk-call';
 import * as path from 'path';
 
@@ -28,15 +35,8 @@ export interface AskCustomResourceProps {
 /**
  * A custom CloudFormation resource for Alexa Skill Kit SDK calls.
  */
-export class AskCustomResource extends Resource implements IGrantable {
-  /**
-   * The principal to grant permissions to.
-   */
-  get grantPrincipal(): IPrincipal {
-    return this.handler.grantPrincipal;
-  }
-
-  private readonly handler: IFunction;
+export class AskCustomResource extends Resource {
+  private readonly provider: CustomResourceProvider;
   private readonly customResource: CustomResource;
 
   /**
@@ -48,18 +48,19 @@ export class AskCustomResource extends Resource implements IGrantable {
   constructor(scope: Construct, id: string, props: AskCustomResourceProps) {
     super(scope, id);
 
-    this.handler = new SingletonFunction(this, 'Provider', {
-      code: Code.fromAsset(path.join(__dirname, '..', '..', 'src', 'handlers', 'ask-custom-resource')),
-      runtime: Runtime.NODEJS_18_X,
-      handler: 'index.handler',
-      uuid: AwsCustomResource.PROVIDER_FUNCTION_UUID,
-      lambdaPurpose: 'ASK',
-      timeout: props.timeout ?? Duration.minutes(2),
+    const codeDir =
+      path.extname(__filename) === '.ts'
+        ? path.join(__dirname, '..', '..', 'dist', 'src', 'handlers', 'ask-custom-resource')
+        : path.join(__dirname, '..', '..', 'src', 'handlers', 'ask-custom-resource');
+
+    this.provider = CustomResourceProvider.getOrCreateProvider(this, 'Custom::ASK', {
+      codeDirectory: codeDir,
+      runtime: CustomResourceProviderRuntime.NODEJS_18_X,
     });
 
     this.customResource = new CustomResource(this, 'Resource', {
       resourceType: 'Custom::ASK',
-      serviceToken: this.handler.functionArn,
+      serviceToken: this.provider.serviceToken,
       pascalCaseProperties: true,
       removalPolicy: props.removalPolicy,
       properties: {
