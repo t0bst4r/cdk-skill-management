@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.6...v1.0.7) (2023-10-29)
+
+
+### Bug Fixes
+
+* **constructs:** changed skill endpoint permission to require a skilltype ([c82fa83](https://github.com/t0bst4r/cdk-skill-management/commit/c82fa839ca7002d88dc664917f96f5f7074d50a0))
+
 ## [1.0.6](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.5...v1.0.6) (2023-10-29)
 
 
