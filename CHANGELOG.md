@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.4...v1.0.5) (2023-10-29)
+
+
+### Bug Fixes
+
+* **project:** changed postinstall to setup ([4a8a505](https://github.com/t0bst4r/cdk-skill-management/commit/4a8a50543f371d7789a7beb6522908571981cc68))
+
 ## [1.0.4](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.3...v1.0.4) (2023-10-29)
 
 
