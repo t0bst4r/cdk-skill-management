@@ -12,6 +12,7 @@ test('SkillEndpointPermission', () => {
 
   const endpointPermission = new SkillEndpointPermission(stack, 'EndpointPermission', {
     handler: endpointFunction,
+    skillType: SkillType.SMART_HOME,
   });
   const skill = Skill.fromAttributes(stack, 'Skill', {
     skillId: 'My-Skill-Id',

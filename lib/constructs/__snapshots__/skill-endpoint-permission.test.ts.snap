@@ -87,7 +87,7 @@ exports[`SkillEndpointPermission 1`] = `
             ],
           ],
         },
-        "Principal": "alexa-appkit.amazon.com",
+        "Principal": "alexa-connectedhome.amazon.com",
       },
       "Type": "AWS::Lambda::Permission",
     },

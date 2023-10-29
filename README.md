@@ -87,7 +87,8 @@ export class MyStack extends cdk.Stack {
 
     const myFunction = new lambda.Function(this, 'MyEndpointFunction', {...});
     const endpointPermission = new skill.SkillEndpointPermission(this, 'EndpointPermission', {
-      handler: myFunction
+      handler: myFunction,
+      skillType: skill.SkillType.SMART_HOME,
     });
 
     const mySkill = new skill.Skill(this, 'Skill', {
