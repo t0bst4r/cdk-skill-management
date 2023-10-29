@@ -1,10 +1,12 @@
 # cdk-skill-management
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build status](https://img.shields.io/github/actions/workflow/status/t0bst4r/cdk-skill-management/release.yml?logo=github)](https://github.com/t0bst4r/cdk-skill-management)
 
-[![npm version](https://badge.fury.io/js/cdk-skill-management.svg)](https://www.npmjs.com/package/cdk-skill-management)
-[![PyPI version](https://badge.fury.io/py/cdk-skill-management.svg)](https://pypi.org/project/cdk-skill-management/)
-[![GitHub version](https://badge.fury.io/gh/t0bst4r%2Fcdk-skill-management.svg)](https://github.com/t0bst4r/cdk-skill-management)
+[![Github version](https://img.shields.io/github/v/release/t0bst4r/cdk-skill-management?logo=github)](https://github.com/t0bst4r/cdk-skill-management)
+[![npm](https://img.shields.io/npm/v/cdk-skill-management?logo=npm)](https://www.npmjs.com/package/cdk-skill-management)
+[![PyPI version](https://img.shields.io/pypi/v/cdk-skill-management?logo=pypi)](https://pypi.org/project/cdk-skill-management/)
+
 
 Your library for creating and managing Alexa Skills via CloudFormation using AWS CDK.
 
