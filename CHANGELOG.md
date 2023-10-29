@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.11](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.10...v1.0.11) (2023-10-29)
+
+
+### Bug Fixes
+
+* **tests:** fixed tests for ask custom resource ([b70c831](https://github.com/t0bst4r/cdk-skill-management/commit/b70c8319035abfba93079595599be54a0c5c9285))
+
 ## [1.0.10](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.9...v1.0.10) (2023-10-29)
 
 
