@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.0...v1.0.1) (2023-10-29)
+
+
+### Bug Fixes
+
+* **project:** fixed npm publish action ([1fafe3d](https://github.com/t0bst4r/cdk-skill-management/commit/1fafe3d01ec9a3de0e3cb27f557cd0ee1cbcaf48))
+
 ## 1.0.0 (2023-10-29)
 
 
