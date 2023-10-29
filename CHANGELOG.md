@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.2...v1.0.3) (2023-10-29)
+
+
+### Bug Fixes
+
+* **project:** added important notice to the readme ([30f2feb](https://github.com/t0bst4r/cdk-skill-management/commit/30f2feba0c218097b54dd39dca65616e0dee16f1))
+
 ## [1.0.2](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.1...v1.0.2) (2023-10-29)
 
 
