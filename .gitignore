@@ -1,0 +1,14 @@
+# System files
+.DS_Store
+
+# IDEs
+.idea/
+
+# Dependencies
+node_modules/
+
+# Build output
+.npmignore
+.jsii
+.tsconfig.json
+dist/
