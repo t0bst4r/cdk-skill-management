@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.8...v1.0.9) (2023-10-29)
+
+
+### Bug Fixes
+
+* **constructs:** changed ask to use CustomResourceProvider ([d266724](https://github.com/t0bst4r/cdk-skill-management/commit/d266724991da59276461f7f1e5a17f5e94ece752))
+
 ## [1.0.8](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.7...v1.0.8) (2023-10-29)
 
 
