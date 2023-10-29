@@ -10,6 +10,8 @@ import {PolicyStatement} from 'aws-cdk-lib/aws-iam';
 export interface SkillEndpointProps {
   /** The AWS Lambda function handler to configure the permission for. */
   readonly handler: IFunction;
+  /** The Type of the Skill, which will be created later */
+  readonly skillType: SkillType;
 }
 
 /**
@@ -50,7 +52,7 @@ export class SkillEndpointPermission extends Construct implements ISkillEndpoint
 
     this.permission = new CfnPermission(this, 'InitialSkillPermission', {
       functionName: props.handler.functionArn,
-      principal: this.principals[SkillType.CUSTOM],
+      principal: this.principals[props.skillType],
       action: 'lambda:InvokeFunction',
     });
 
