@@ -53,3 +53,9 @@ jobs:
         run: npm publish dist/jsii/js/*.tgz
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - if: ${{ steps.release.outputs.release_created }}
+        name: Publish PyPI
+        run: twine upload dist/jsii/python/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: pypi-${{ secrets.TWINE_AUTH_TOKEN }}
