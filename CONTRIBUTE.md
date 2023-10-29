@@ -39,7 +39,8 @@ Before submitting code contributions, please consider the following:
 - Adhere to the project's coding standards and style. We use eslint with prettier for this project. (`npm run lint`)
 
 - Write clear and concise commit messages and PR descriptions following [conventional commits](https://www.conventionalcommits.org/).
-  We use [husky](https://typicode.github.io/husky/) with [commitlint](https://commitlint.js.org/) for this project. It configures itself when running `npm install` during `postinstall` phase and is automatically executed as a git hook.
+  We use [husky](https://typicode.github.io/husky/) with [commitlint](https://commitlint.js.org/) for this project. 
+  To enable this configuration run `npm run setup`, then it is automatically executed as a git hook.
 
 - If your code adds new features or changes existing ones, make sure to update the project's documentation accordingly.
 
