@@ -7,7 +7,6 @@
 [![npm](https://img.shields.io/npm/v/cdk-skill-management?logo=npm)](https://www.npmjs.com/package/cdk-skill-management)
 [![PyPI version](https://img.shields.io/pypi/v/cdk-skill-management?logo=pypi)](https://pypi.org/project/cdk-skill-management/)
 
-> [!IMPORTANT]
 > Since I am only working with Node.js and TypeScript, the Python package is currently not tested / used.
 > Therefore I am looking for someone to use and test it to provide feedback, if the library is actually working and if there are best practices to apply (e.g. namings, module name, etc.).
 
