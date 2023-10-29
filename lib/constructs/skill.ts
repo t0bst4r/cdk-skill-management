@@ -185,6 +185,7 @@ export class Skill extends SkillBase {
     });
     this.resource.node.addDependency(this.packageRole);
     this.resource.node.addDependency(props.skillPackage.asset);
+    props.skillPackage.asset.grantRead(this.packageRole);
 
     this.skillId = this.resource.ref;
     this.skillStage = props.skillStage;

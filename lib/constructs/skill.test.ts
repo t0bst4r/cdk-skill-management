@@ -22,7 +22,11 @@ test('Skill', () => {
     skillStage: 'development',
     skillType: SkillType.CUSTOM,
     vendorId: vendorId.stringValue,
-    authenticationConfiguration: skillCredentials.secretValue,
+    authenticationConfiguration: {
+      clientId: skillCredentials.secretValueFromJson('clientId').unsafeUnwrap(),
+      clientSecret: skillCredentials.secretValueFromJson('clientSecret').unsafeUnwrap(),
+      refreshToken: skillCredentials.secretValueFromJson('refreshToken').unsafeUnwrap(),
+    },
     skillPackage: {
       asset: skillPackage,
       overrides: {
