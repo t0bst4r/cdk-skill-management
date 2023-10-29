@@ -81,8 +81,8 @@ export class MyStack extends cdk.Stack {
 
     const vendorParameter = ssm.StringParameter
       .fromStringParameterName(this, 'VendorIdParameter', 'my-skill-vendor-id');
-    const skillAuthenticationSecret = secretsmanager
-      .Secret.fromSecretNameV2(this, 'SkillAuthenticationSecret', 'my-skill-authentication');
+    const skillCredentials = secretsmanager
+      .Secret.fromSecretNameV2(this, 'SkillCredentials', 'my-skill-authentication');
     const asset = new s3Assets.Asset(this, 'SkillPackageAsset', {path: './path/to/my/skill-package'});
 
     const myFunction = new lambda.Function(this, 'MyEndpointFunction', {...});
@@ -94,7 +94,11 @@ export class MyStack extends cdk.Stack {
       skillType: skill.SkillType.SMART_HOME,
       skillStage: 'development',
       vendorId: vendorParameter.stringValue,
-      authenticationConfiguration: skillAuthenticationSecret.secretValue,
+      authenticationConfiguration: {
+        clientId: skillCredentials.secretValueFromJson('clientId').unsafeUnwrap(),
+        clientSecret: skillCredentials.secretValueFromJson('clientSecret').unsafeUnwrap(),
+        refreshToken: skillCredentials.secretValueFromJson('refreshToken').unsafeUnwrap(),
+      },
       skillPackage: {
         asset,
         overrides: {
