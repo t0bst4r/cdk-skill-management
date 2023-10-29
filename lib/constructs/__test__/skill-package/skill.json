@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "manifestVersion": "1.0",
+    "publishingInformation": {
+      "distributionCountries": [],
+      "locales": {
+        "de-DE": {
+          "description": "My Personal Smart Home",
+          "examplePhrases": [],
+          "keywords": [
+            "Smart Home",
+            "Lights",
+            "Smart Devices"
+          ],
+          "name": "Test-Smart-Home-Skill",
+          "summary": "My Personal Smart Home"
+        }
+      },
+      "testingInstructions": "Sample Testing Instructions."
+    },
+    "permissions": [
+      {
+        "name": "alexa::async_event:write"
+      }
+    ],
+    "apis": {
+      "smartHome": {
+        "protocolVersion": "3",
+        "endpoint": {
+          "uri": "//override"
+        }
+      }
+    }
+  }
+}
