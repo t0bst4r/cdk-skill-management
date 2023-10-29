@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "description": "CDK constructs to manage Alexa Skills",
   "scripts": {
-    "postinstall": "husky install",
+    "setup": "husky install",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "npm run build:jsii && npm run build:handler",
