@@ -12,3 +12,6 @@ node_modules/
 .jsii
 .tsconfig.json
 dist/
+
+# Other
+.tmp/

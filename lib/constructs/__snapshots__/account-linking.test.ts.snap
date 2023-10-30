@@ -12,6 +12,9 @@ exports[`AccountLinking 1`] = `
   "Resources": {
     "AccountLinkingC99A8611": {
       "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "AccountLinkingProviderRolePolicy866FE269",
+      ],
       "Properties": {
         "ServiceToken": {
           "Fn::GetAtt": [
@@ -40,7 +43,7 @@ exports[`AccountLinking 1`] = `
           ],
         },
         "delete": "{"action":"deleteAccountLinkingInfoV1","parameters":["My-Skill-Id","development"]}",
-        "update": "{"action":"updateAccountLinkingInfoV1","parameters":["My-Skill-Id","development",{"accountLinkingRequest":{"authenticationFlowType":"AUTH_CODE","authorizationUrl":"https://example.com/auth/authorize","accessTokenUrl":"https://example.com/auth/token","accessTokenScheme":"REQUEST_BODY_CREDENTIALS","clientId":"client-id","clientSecret":"client-secret","scopes":["smart_home"]}}]}",
+        "update": "{"action":"updateAccountLinkingInfoV1","parameters":["My-Skill-Id","development",{"accountLinkingRequest":{"authorizationUrl":"https://example.com/auth/authorize","accessTokenUrl":"https://example.com/auth/token","accessTokenScheme":"REQUEST_BODY_CREDENTIALS","clientId":"client-id","clientSecret":"client-secret","scopes":["smart_home"],"type":"AUTH_CODE"}}]}",
       },
       "Type": "Custom::ASK",
       "UpdateReplacePolicy": "Delete",
@@ -120,7 +123,7 @@ exports[`AccountLinking 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "dfe32c4b927e7eaff906cc41a3e044f57f5fb3e2c987ff19789b41c514507d7f.zip",
+          "S3Key": "13325ce6b32eb5ce62b1c0b20fa16cf263f67b6909b46ee9dea609b97478f866.zip",
         },
         "Handler": "__entrypoint__.handler",
         "MemorySize": 128,
