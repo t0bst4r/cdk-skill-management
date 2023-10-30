@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.14](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.13...v1.0.14) (2023-10-30)
+
+
+### Bug Fixes
+
+* **constructs:** added error handling for ask resources and fixed accountLinking request ([1c28c8d](https://github.com/t0bst4r/cdk-skill-management/commit/1c28c8d292868d4e775aca6b845552a21f8405f1))
+
 ## [1.0.13](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.12...v1.0.13) (2023-10-30)
 
 
