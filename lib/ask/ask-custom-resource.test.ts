@@ -16,7 +16,7 @@ test('AskCustomResource', () => {
     skillType: SkillType.SMART_HOME,
   });
   new AskCustomResource(stack, 'AccountLinking', {
-    authenticationConfiguration: skillCredentials.secretValue,
+    authenticationConfigurationSecret: skillCredentials,
     onUpdate: {
       action: 'updateAccountLinkingInfoV1',
       parameters: [skill.skillId, skill.skillStage, {accountLinkingRequest: {my: 1, awesome: 2, props: 3}}],
