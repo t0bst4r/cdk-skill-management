@@ -1,3 +1,5 @@
+export * from './constructs/skill-authentication-props';
+
 export * from './constructs/skill';
 export * from './constructs/skill-endpoint-permission';
 

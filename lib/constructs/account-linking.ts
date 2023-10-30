@@ -1,7 +1,8 @@
-import {IResolvable, IResource, Resource} from 'aws-cdk-lib';
+import {IResource, Resource} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
-import type {ISkill, SkillAuthenticationConfiguration} from './skill';
+import type {ISkill} from './skill';
 import {AskCustomResource} from '../ask/ask-custom-resource';
+import {SkillAuthenticationProps} from './skill-authentication-props';
 
 /**
  * Represents a platform-specific authorization URL for account linking.
@@ -55,11 +56,9 @@ export interface IAccountLinking extends IResource {}
 /**
  * Properties for creating an Account Linking resource.
  */
-export interface AccountLinkingProps {
+export interface AccountLinkingProps extends SkillAuthenticationProps {
   /** The Alexa Skill for which account linking is configured. */
   readonly skill: ISkill;
-  /** The authentication configuration for the Alexa Skill. */
-  readonly authenticationConfiguration: SkillAuthenticationConfiguration | IResolvable;
   /** The request parameters for account linking. */
   readonly request: AccountLinkingRequest;
 }
@@ -81,6 +80,8 @@ export class AccountLinking extends Resource implements IAccountLinking {
 
     this.resource = new AskCustomResource(this, 'Default', {
       authenticationConfiguration: props.authenticationConfiguration,
+      authenticationConfigurationSecret: props.authenticationConfigurationSecret,
+      authenticationConfigurationParameter: props.authenticationConfigurationParameter,
       onUpdate: {
         action: 'updateAccountLinkingInfoV1',
         parameters: [props.skill.skillId, props.skill.skillStage, {accountLinkingRequest: props.request}],

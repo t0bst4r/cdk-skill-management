@@ -3,27 +3,24 @@ import {
   CustomResourceProvider,
   CustomResourceProviderRuntime,
   Duration,
-  IResolvable,
   Lazy,
   RemovalPolicy,
   Resource,
   Stack,
 } from 'aws-cdk-lib';
-import {SkillAuthenticationConfiguration} from '../constructs/skill';
 import {Construct} from 'constructs';
 import {AskSdkCall} from './ask-sdk-call';
 import * as path from 'path';
+import {SkillAuthenticationProps} from '../constructs/skill-authentication-props';
 
 /**
  * Properties for configuring an Ask Custom Resource.
  */
-export interface AskCustomResourceProps {
+export interface AskCustomResourceProps extends SkillAuthenticationProps {
   /** Timeout for the custom resource. */
   readonly timeout?: Duration;
   /** Removal policy for the custom resource. */
   readonly removalPolicy?: RemovalPolicy;
-  /** Authentication configuration for the Alexa Skill. */
-  readonly authenticationConfiguration: SkillAuthenticationConfiguration | IResolvable;
   /** Action to perform on resource creation. */
   readonly onCreate?: AskSdkCall;
   /** Action to perform on resource update. */
@@ -48,6 +45,16 @@ export class AskCustomResource extends Resource {
   constructor(scope: Construct, id: string, props: AskCustomResourceProps) {
     super(scope, id);
 
+    const authPropsCount = [
+      props.authenticationConfiguration,
+      props.authenticationConfigurationParameter,
+      props.authenticationConfigurationSecret,
+    ].filter(it => !!it).length;
+
+    if (authPropsCount !== 1) {
+      throw new Error('Exactly one authentication configuration needs to be provided!');
+    }
+
     const codeDir =
       path.extname(__filename) === '.ts'
         ? path.join(__dirname, '..', '..', 'dist', 'src', 'handlers', 'ask-custom-resource')
@@ -58,12 +65,31 @@ export class AskCustomResource extends Resource {
       runtime: CustomResourceProviderRuntime.NODEJS_18_X,
     });
 
+    if (props.authenticationConfigurationSecret) {
+      this.provider.addToRolePolicy({
+        Effect: 'Allow',
+        Action: ['secretsmanager:GetSecretValue', 'secretsmanager:DescribeSecret'],
+        Resource: props.authenticationConfigurationSecret.secretArn,
+      });
+    }
+    if (props.authenticationConfigurationParameter) {
+      this.provider.addToRolePolicy({
+        Effect: 'Allow',
+        Action: ['ssm:DescribeParameters', 'ssm:GetParameters', 'ssm:GetParameter', 'ssm:GetParameterHistory'],
+        Resource: props.authenticationConfigurationParameter.parameterArn,
+      });
+    }
+
     this.customResource = new CustomResource(this, 'Resource', {
       resourceType: 'Custom::ASK',
       serviceToken: this.provider.serviceToken,
       removalPolicy: props.removalPolicy,
       properties: {
-        authentication: props.authenticationConfiguration,
+        authenticationConfiguration: props.authenticationConfiguration
+          ? this.encodeJson(props.authenticationConfiguration)
+          : undefined,
+        authenticationConfigurationParameter: props.authenticationConfigurationParameter?.parameterName,
+        authenticationConfigurationSecret: props.authenticationConfigurationSecret?.secretArn,
         create: props.onCreate ? this.encodeJson(props.onCreate) : undefined,
         update: props.onUpdate ? this.encodeJson(props.onUpdate) : undefined,
         delete: props.onDelete ? this.encodeJson(props.onDelete) : undefined,

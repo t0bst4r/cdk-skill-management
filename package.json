@@ -8,7 +8,7 @@
     "lint:fix": "eslint . --fix",
     "build": "npm run build:jsii && npm run build:handler",
     "build:jsii": "jsii",
-    "build:handler": "esbuild --bundle src/handlers/ask-custom-resource/index.ts --outfile=dist/src/handlers/ask-custom-resource/index.js --minify --format=cjs --platform=node",
+    "build:handler": "esbuild --bundle src/handlers/ask-custom-resource/index.ts --external:@aws-sdk/* --outfile=dist/src/handlers/ask-custom-resource/index.js --minify --format=cjs --platform=node",
     "package": "jsii-pacmak",
     "test": "jest",
     "test:update": "jest -u",
@@ -38,6 +38,8 @@
     "constructs": "^10.0.0"
   },
   "devDependencies": {
+    "@aws-sdk/client-ssm": "^3.438.0",
+    "@aws-sdk/client-secrets-manager": "^3.438.0",
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
     "@types/aws-lambda": "^8.10.125",

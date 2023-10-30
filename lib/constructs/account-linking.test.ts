@@ -26,7 +26,7 @@ test('AccountLinking', () => {
       clientSecret: 'client-secret',
       scopes: ['smart_home'],
     },
-    authenticationConfiguration: skillCredentials.secretValue,
+    authenticationConfigurationSecret: skillCredentials,
   });
 
   expect(Template.fromStack(stack)).toMatchSnapshot();

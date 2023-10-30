@@ -1,8 +1,11 @@
-import {IResolvable, IResource, Resource} from 'aws-cdk-lib';
+import {IResource, Resource} from 'aws-cdk-lib';
 import {Construct} from 'constructs';
 import {CfnSkill} from 'aws-cdk-lib/alexa-ask';
 import {Role, ServicePrincipal} from 'aws-cdk-lib/aws-iam';
 import {Asset} from 'aws-cdk-lib/aws-s3-assets';
+import {SkillAuthenticationProps} from './skill-authentication-props';
+import {ISecret} from 'aws-cdk-lib/aws-secretsmanager';
+import {IStringParameter} from 'aws-cdk-lib/aws-ssm';
 
 /**
  * Enumeration for different Alexa Skill types.
@@ -43,10 +46,6 @@ abstract class SkillBase extends Resource implements ISkill {
 }
 
 /**
- * Type alias for Alexa Skill authentication configuration.
- */
-export type SkillAuthenticationConfiguration = CfnSkill.AuthenticationConfigurationProperty;
-/**
  * Type alias for Alexa Skill package overrides.
  */
 export type SkillPackageOverrides = CfnSkill.OverridesProperty;
@@ -64,15 +63,13 @@ export interface SkillPackage {
 /**
  * Properties for creating an Alexa Skill.
  */
-export interface SkillProps {
+export interface SkillProps extends SkillAuthenticationProps {
   /** The type of the Alexa Skill. */
   readonly skillType: SkillType;
   /** The stage of the Alexa Skill. */
   readonly skillStage: string;
   /** The vendor ID of the Alexa Skill. */
   readonly vendorId: string;
-  /** The authentication configuration for the Alexa Skill. */
-  readonly authenticationConfiguration: SkillAuthenticationConfiguration | IResolvable;
   /** The package information for the Alexa Skill. */
   readonly skillPackage: SkillPackage;
 }
@@ -160,9 +157,24 @@ export class Skill extends SkillBase {
   constructor(scope: Construct, id: string, props: SkillProps) {
     super(scope, id);
 
+    const authPropsCount = [
+      props.authenticationConfiguration,
+      props.authenticationConfigurationParameter,
+      props.authenticationConfigurationSecret,
+    ].filter(it => !!it).length;
+
+    if (authPropsCount !== 1) {
+      throw new Error('Exactly one authentication configuration needs to be provided!');
+    }
+
     this.packageRole = new Role(this, 'PackageRole', {
       assumedBy: new ServicePrincipal('alexa-appkit.amazon.com'),
     });
+
+    const authentication: CfnSkill.AuthenticationConfigurationProperty =
+      this.authenticationSecret(props.authenticationConfigurationSecret) ??
+      this.authenticationParameter(props.authenticationConfigurationParameter) ??
+      props.authenticationConfiguration!;
 
     this.resource = new CfnSkill(this, 'Default', {
       skillPackage: {
@@ -181,7 +193,7 @@ export class Skill extends SkillBase {
         },
       },
       vendorId: props.vendorId,
-      authenticationConfiguration: props.authenticationConfiguration,
+      authenticationConfiguration: authentication,
     });
     this.resource.node.addDependency(this.packageRole);
     this.resource.node.addDependency(props.skillPackage.asset);
@@ -190,5 +202,25 @@ export class Skill extends SkillBase {
     this.skillId = this.resource.ref;
     this.skillStage = props.skillStage;
     this.skillType = props.skillType;
+  }
+
+  private authenticationSecret(secret: ISecret | undefined): CfnSkill.AuthenticationConfigurationProperty | undefined {
+    if (!secret) {
+      return;
+    }
+    return {
+      clientId: secret.secretValueFromJson('clientId').unsafeUnwrap(),
+      clientSecret: secret.secretValueFromJson('clientSecret').unsafeUnwrap(),
+      refreshToken: secret.secretValueFromJson('refreshToken').unsafeUnwrap(),
+    };
+  }
+
+  private authenticationParameter(
+    parameter: IStringParameter | undefined
+  ): CfnSkill.AuthenticationConfigurationProperty | undefined {
+    if (!parameter) {
+      return;
+    }
+    return JSON.parse(parameter.stringValue);
   }
 }
