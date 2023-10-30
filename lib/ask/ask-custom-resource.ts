@@ -12,6 +12,7 @@ import {Construct} from 'constructs';
 import {AskSdkCall} from './ask-sdk-call';
 import * as path from 'path';
 import {SkillAuthenticationProps} from '../constructs/skill-authentication-props';
+import {IRole, Role} from 'aws-cdk-lib/aws-iam';
 
 /**
  * Properties for configuring an Ask Custom Resource.
@@ -35,6 +36,7 @@ export interface AskCustomResourceProps extends SkillAuthenticationProps {
 export class AskCustomResource extends Resource {
   private readonly provider: CustomResourceProvider;
   private readonly customResource: CustomResource;
+  private readonly providerRole: IRole;
 
   /**
    * Creates an instance of the Ask Custom Resource.
@@ -65,19 +67,13 @@ export class AskCustomResource extends Resource {
       runtime: CustomResourceProviderRuntime.NODEJS_18_X,
     });
 
+    this.providerRole = Role.fromRoleArn(this, 'ProviderRole', this.provider.roleArn);
+
     if (props.authenticationConfigurationSecret) {
-      this.provider.addToRolePolicy({
-        Effect: 'Allow',
-        Action: ['secretsmanager:GetSecretValue', 'secretsmanager:DescribeSecret'],
-        Resource: props.authenticationConfigurationSecret.secretArn,
-      });
+      props.authenticationConfigurationSecret.grantRead(this.providerRole);
     }
     if (props.authenticationConfigurationParameter) {
-      this.provider.addToRolePolicy({
-        Effect: 'Allow',
-        Action: ['ssm:DescribeParameters', 'ssm:GetParameters', 'ssm:GetParameter', 'ssm:GetParameterHistory'],
-        Resource: props.authenticationConfigurationParameter.parameterArn,
-      });
+      props.authenticationConfigurationParameter.grantRead(this.providerRole);
     }
 
     this.customResource = new CustomResource(this, 'Resource', {
