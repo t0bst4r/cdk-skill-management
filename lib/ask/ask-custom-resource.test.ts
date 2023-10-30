@@ -1,4 +1,4 @@
-import {App, Stack} from 'aws-cdk-lib';
+import {App, Arn, ArnFormat, Stack} from 'aws-cdk-lib';
 import {Template} from 'aws-cdk-lib/assertions';
 import {Secret} from 'aws-cdk-lib/aws-secretsmanager';
 import {AskCustomResource} from './ask-custom-resource';
@@ -8,7 +8,19 @@ test('AskCustomResource', () => {
   const app = new App();
   const stack = new Stack(app, 'TestStack');
 
-  const skillCredentials = Secret.fromSecretNameV2(stack, 'SkillCredentials', '/Skill/Credentials');
+  const skillCredentials = Secret.fromSecretCompleteArn(
+    stack,
+    'SkillCredentials',
+    Arn.format(
+      {
+        arnFormat: ArnFormat.COLON_RESOURCE_NAME,
+        service: 'secretsmanager',
+        resource: 'secret',
+        resourceName: '/Skill/Credentials',
+      },
+      stack
+    )
+  );
 
   const skill = Skill.fromAttributes(stack, 'Skill', {
     skillId: 'My-Skill-Id',
