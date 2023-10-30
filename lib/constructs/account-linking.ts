@@ -84,7 +84,17 @@ export class AccountLinking extends Resource implements IAccountLinking {
       authenticationConfigurationParameter: props.authenticationConfigurationParameter,
       onUpdate: {
         action: 'updateAccountLinkingInfoV1',
-        parameters: [props.skill.skillId, props.skill.skillStage, {accountLinkingRequest: props.request}],
+        parameters: [
+          props.skill.skillId,
+          props.skill.skillStage,
+          {
+            accountLinkingRequest: {
+              ...props.request,
+              type: props.request.authenticationFlowType,
+              authenticationFlowType: undefined,
+            },
+          },
+        ],
       },
       onDelete: {
         action: 'deleteAccountLinkingInfoV1',

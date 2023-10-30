@@ -23,7 +23,16 @@ export const handler: CdkCustomResourceHandler = async event => {
     throw new Error(`ASK SDK does not provide an ${sdkCall.action} action`);
   }
   const boundAction = action.bind(client);
-  const result = await boundAction(...sdkCall.parameters);
+  const result = await boundAction(...sdkCall.parameters).catch(e => {
+    if (e.response) {
+      if (e.response.message) {
+        throw new Error(e.response.message + '\n' + JSON.stringify(e.response, undefined, 2));
+      } else {
+        throw new Error(JSON.stringify(e.response, undefined, 2));
+      }
+    }
+    throw e;
+  });
   return {Data: result};
 };
 

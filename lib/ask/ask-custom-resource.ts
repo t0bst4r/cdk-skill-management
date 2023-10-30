@@ -8,7 +8,7 @@ import {
   Resource,
   Stack,
 } from 'aws-cdk-lib';
-import {Construct} from 'constructs';
+import {Construct, IDependable} from 'constructs';
 import {AskSdkCall} from './ask-sdk-call';
 import * as path from 'path';
 import {SkillAuthenticationProps} from '../constructs/skill-authentication-props';
@@ -69,11 +69,12 @@ export class AskCustomResource extends Resource {
 
     this.providerRole = Role.fromRoleArn(this, 'ProviderRole', this.provider.roleArn);
 
+    let grant: IDependable | undefined;
     if (props.authenticationConfigurationSecret) {
-      props.authenticationConfigurationSecret.grantRead(this.providerRole);
+      grant = props.authenticationConfigurationSecret.grantRead(this.providerRole);
     }
     if (props.authenticationConfigurationParameter) {
-      props.authenticationConfigurationParameter.grantRead(this.providerRole);
+      grant = props.authenticationConfigurationParameter.grantRead(this.providerRole);
     }
 
     this.customResource = new CustomResource(this, 'Resource', {
@@ -91,6 +92,9 @@ export class AskCustomResource extends Resource {
         delete: props.onDelete ? this.encodeJson(props.onDelete) : undefined,
       },
     });
+    if (grant) {
+      this.customResource.node.addDependency(grant);
+    }
   }
 
   /**
