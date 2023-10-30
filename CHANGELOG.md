@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.12](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.11...v1.0.12) (2023-10-30)
+
+
+### Bug Fixes
+
+* **constructs:** changed authentication properties and enabled secrets and parameters ([4b84b15](https://github.com/t0bst4r/cdk-skill-management/commit/4b84b155a3accceaaa03d63c5c59b1b7b67700df))
+
 ## [1.0.11](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.10...v1.0.11) (2023-10-29)
 
 
