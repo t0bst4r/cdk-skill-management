@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.13](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.12...v1.0.13) (2023-10-30)
+
+
+### Bug Fixes
+
+* **constructs:** changed the way, permissions in ASK calls are created ([c8522d6](https://github.com/t0bst4r/cdk-skill-management/commit/c8522d6fa4efa2fb1cbd7927f696b8e5c6e94b43))
+
 ## [1.0.12](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.11...v1.0.12) (2023-10-30)
 
 
