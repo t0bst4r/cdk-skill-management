@@ -1,5 +1,4 @@
-import {IResource, Resource} from 'aws-cdk-lib';
-import {Construct} from 'constructs';
+import {Construct, IConstruct} from 'constructs';
 import type {ISkill} from './skill';
 import {AskCustomResource} from '../ask/ask-custom-resource';
 import {SkillAuthenticationProps} from './skill-authentication-props';
@@ -51,7 +50,7 @@ export interface AccountLinkingRequest {
 /**
  * Interface representing an Account Linking resource.
  */
-export interface IAccountLinking extends IResource {}
+export interface IAccountLinking extends IConstruct {}
 
 /**
  * Properties for creating an Account Linking resource.
@@ -66,7 +65,7 @@ export interface AccountLinkingProps extends SkillAuthenticationProps {
 /**
  * Represents an Account Linking resource for an Alexa Skill.
  */
-export class AccountLinking extends Resource implements IAccountLinking {
+export class AccountLinking extends Construct implements IAccountLinking {
   private readonly resource: AskCustomResource;
 
   /**
