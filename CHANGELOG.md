@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.18](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.17...v1.0.18) (2023-10-31)
+
+
+### Bug Fixes
+
+* **project:** fixed deployment paths ([25d98b2](https://github.com/t0bst4r/cdk-skill-management/commit/25d98b217835dcb2af1e3378ce6a8ede65beb947))
+
 ## [1.0.17](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.16...v1.0.17) (2023-10-31)
 
 
