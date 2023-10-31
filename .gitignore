@@ -10,7 +10,6 @@ node_modules/
 # Build output
 .npmignore
 .jsii
-.tsconfig.json
 dist/
 API.*.md
 
