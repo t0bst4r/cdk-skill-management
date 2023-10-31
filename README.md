@@ -1,4 +1,4 @@
-# cdk-skill-management
+# [cdk-skill-management](https://t0bst4r.github.io/cdk-skill-management/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build status](https://img.shields.io/github/actions/workflow/status/t0bst4r/cdk-skill-management/release.yml?logo=github)](https://github.com/t0bst4r/cdk-skill-management)
@@ -40,9 +40,10 @@ pip install cdk-skill-management
 ## Usage
 To use this library in your AWS CDK project, import and instantiate the classes you need.
 
-You can find the API documentation in the `./docs` directory of the [GitHub Repository](https://github.com/t0bst4r/cdk-skill-management/tree/main/docs).
+You can find the API-Documentation in [GitHub Pages](https://t0bst4r.github.io/cdk-skill-management/):
+- [TypeScript](docs/API.js.md)
+- [python](docs/API.py.md)
 
-See the `main` branch for the latest documentation, or choose your version from the [tags list](https://github.com/t0bst4r/cdk-skill-management/tags).
 
 ### Regional restrictions
 Skills can be deployed in every AWS regions, but Lambda Endpoints are restricted to
@@ -130,4 +131,7 @@ export class MyStack extends cdk.Stack {
 We welcome contributions from the community. To contribute, please follow our [contribution guidelines](CONTRIBUTE.md).
 
 ## License
-This library is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This library is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+
+This library bundles `ask-smapi-sdk` and `ask-smapi-model` into a custom resource lambda function.
+Those are licensed under the Apache License 2.0 - see the [LICENSE-EXTERNAL](LICENSE-EXTERNAL.txt) for details.
