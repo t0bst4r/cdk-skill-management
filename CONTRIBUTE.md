@@ -55,7 +55,7 @@ adjustments as needed.
 ## Licensing
 
 By contributing to this project, you agree that your contributions will be licensed under the
-project's [license](LICENSE). If you're unsure or have questions about licensing, please contact us.
+project's [license](LICENSE.txt). If you're unsure or have questions about licensing, please contact us.
 
 ## Questions and Assistance
 
