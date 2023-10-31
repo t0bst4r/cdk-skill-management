@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.21](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.20...v1.0.21) (2023-10-31)
+
+
+### Bug Fixes
+
+* **project:** added git checkout to release workflow ([7622c4c](https://github.com/t0bst4r/cdk-skill-management/commit/7622c4cabf6f1f148e4d0a124ad76d2a7193f92c))
+
 ## [1.0.20](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.19...v1.0.20) (2023-10-31)
 
 
