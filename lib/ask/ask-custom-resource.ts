@@ -5,7 +5,6 @@ import {
   Duration,
   Lazy,
   RemovalPolicy,
-  Resource,
   Stack,
 } from 'aws-cdk-lib';
 import {Construct, IDependable} from 'constructs';
@@ -33,7 +32,7 @@ export interface AskCustomResourceProps extends SkillAuthenticationProps {
 /**
  * A custom CloudFormation resource for Alexa Skill Kit SDK calls.
  */
-export class AskCustomResource extends Resource {
+export class AskCustomResource extends Construct {
   private readonly provider: CustomResourceProvider;
   private readonly customResource: CustomResource;
   private readonly providerRole: IRole;

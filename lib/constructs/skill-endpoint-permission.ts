@@ -1,4 +1,4 @@
-import {Construct, IDependable} from 'constructs';
+import {Construct, IConstruct, IDependable} from 'constructs';
 import {CfnPermission, IFunction} from 'aws-cdk-lib/aws-lambda';
 import {ISkill, SkillType} from './skill';
 import {AwsCustomResource, AwsCustomResourcePolicy, AwsSdkCall, PhysicalResourceId} from 'aws-cdk-lib/custom-resources';
@@ -17,7 +17,7 @@ export interface SkillEndpointProps {
 /**
  * Interface representing a Skill Endpoint Permission.
  */
-export interface ISkillEndpointPermission {
+export interface ISkillEndpointPermission extends IConstruct {
   /**
    * Configures a Skill Endpoint Permission for a specific skill.
    * @param scope - The construct scope.

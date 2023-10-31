@@ -1,5 +1,4 @@
-import {IResource, Resource} from 'aws-cdk-lib';
-import {Construct} from 'constructs';
+import {Construct, IConstruct} from 'constructs';
 import {CfnSkill} from 'aws-cdk-lib/alexa-ask';
 import {Role, ServicePrincipal} from 'aws-cdk-lib/aws-iam';
 import {Asset} from 'aws-cdk-lib/aws-s3-assets';
@@ -18,7 +17,7 @@ export enum SkillType {
 /**
  * Interface representing an Alexa Skill.
  */
-export interface ISkill extends IResource {
+export interface ISkill extends IConstruct {
   /** The unique ID of the Alexa Skill. */
   readonly skillId: string;
   /** The stage of the Alexa Skill. */
@@ -30,7 +29,7 @@ export interface ISkill extends IResource {
 /**
  * Base class for the Alexa Skill construct.
  */
-abstract class SkillBase extends Resource implements ISkill {
+abstract class SkillBase extends Construct implements ISkill {
   /**
    * The unique ID of the Alexa Skill.
    */
