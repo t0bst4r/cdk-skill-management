@@ -12,6 +12,7 @@ node_modules/
 .jsii
 .tsconfig.json
 dist/
+docs/
 
 # Other
 .tmp/

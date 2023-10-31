@@ -40,6 +40,9 @@ pip install cdk-skill-management
 ## Usage
 To use this library in your AWS CDK project, import and instantiate the classes you need.
 
+You can find the API documentation in the `./docs` directory of the [GitHub Repository](https://github.com/t0bst4r/cdk-skill-management/tree/main/docs).
+
+See the `main` branch for the latest documentation, or choose your version from the [tags list](https://github.com/t0bst4r/cdk-skill-management/tags).
 
 ### Regional restrictions
 Skills can be deployed in every AWS regions, but Lambda Endpoints are restricted to
