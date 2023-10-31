@@ -93,14 +93,11 @@ jobs:
         with:
           name: node
       - name: Publish NPM
-        run: |
-          ls -la
-          ls -la ./node
-          npm publish ./node/*.tgz
+        run: npm publish ./cdk-skill-management*.tgz
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Add artifacts to the release
-        run: gh release upload ${{ steps.release.outputs.tag_name}} node/*.tgz
+        run: gh release upload ${{ steps.release.outputs.tag_name }} ./cdk-skill-management*.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -113,18 +110,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: python
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Publish PyPI
+      - name: Publish PyPI
         run: |
-          ls -la
-          ls -la ./python
           pip install twine
-          twine upload ./python/*
+          twine upload ./cdk-skill-management-*
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_AUTH_TOKEN }}
       - name: Add artifacts to the release
-        run: gh release upload ${{ steps.release.outputs.tag_name}} python/*
+        run: gh release upload ${{ steps.release.outputs.tag_name }} ./cdk-skill-management-*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
