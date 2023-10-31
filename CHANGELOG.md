@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.15](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.14...v1.0.15) (2023-10-31)
+
+
+### Bug Fixes
+
+* **constructs:** removed inheritance from resource ([59512e2](https://github.com/t0bst4r/cdk-skill-management/commit/59512e23d9c3e82203de626ba4871e73dd501653))
+* **project:** added gh release artifacts and docs ([2510d26](https://github.com/t0bst4r/cdk-skill-management/commit/2510d265559985594abd01cd30a662d4381389f2))
+* **project:** fixed documentation generation ([525bdf2](https://github.com/t0bst4r/cdk-skill-management/commit/525bdf2bf7456b5be10728b5674c386845034d63))
+
 ## [1.0.14](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.13...v1.0.14) (2023-10-30)
 
 
