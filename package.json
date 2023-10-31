@@ -4,7 +4,8 @@
   "description": "CDK constructs to manage Alexa Skills",
   "scripts": {
     "setup": "husky install",
-    "docs": "rimraf ./docs && npm run docs:js && npm run docs:py",
+    "predocs": "npm run build:jsii",
+    "docs": "rimraf API.*.md && npm run docs:js && npm run docs:py",
     "docs:js": "jsii-docgen -l typescript -o ./API.js.md",
     "docs:py": "jsii-docgen -l python -o ./API.py.md",
     "lint": "eslint .",
