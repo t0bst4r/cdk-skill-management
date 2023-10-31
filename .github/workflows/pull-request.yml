@@ -32,3 +32,5 @@ jobs:
         run: npm test
       - name: Package
         run: npm run package
+      - name: Documentation
+        run: npm run docs

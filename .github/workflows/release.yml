@@ -12,41 +12,37 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test
+      - name: Package
+        run: npm run package
+      - name: Documentation
+        run: |
+          npm run docs
+          git add --force ./docs/*
+
       - id: release
         uses: google-github-actions/release-please-action@v3
         with:
           release-type: node
           package-name: cdk-skill-management
-
-      - if: ${{ steps.release.outputs.release_created }}
-        uses: actions/checkout@v4
-
-      - if: ${{ steps.release.outputs.release_created }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
-      - if: ${{ steps.release.outputs.release_created }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Install
-        run: npm ci
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Lint
-        run: npm run lint
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Build
-        run: npm run build
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Test
-        run: npm test
-      - if: ${{ steps.release.outputs.release_created }}
-        name: Package
-        run: npm run package
 
       - if: ${{ steps.release.outputs.release_created }}
         name: Publish NPM
