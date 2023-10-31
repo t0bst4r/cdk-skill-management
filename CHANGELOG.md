@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.20](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.19...v1.0.20) (2023-10-31)
+
+
+### Bug Fixes
+
+* **project:** added tagname to publish process ([9f674c2](https://github.com/t0bst4r/cdk-skill-management/commit/9f674c2ca5bdca93928c315c6a2ddfac1d8c04b5))
+
 ## [1.0.19](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.18...v1.0.19) (2023-10-31)
 
 
