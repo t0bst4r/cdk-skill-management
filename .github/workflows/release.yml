@@ -36,7 +36,9 @@ jobs:
       - name: Documentation
         run: |
           npm run docs
-          git add --force ./docs/*
+          git add --force ./docs/API.js.md
+          git add --force ./docs/API.py.md
+          git commit -m "docs: API documentation updated"
 
       - id: release
         uses: google-github-actions/release-please-action@v3
@@ -57,3 +59,9 @@ jobs:
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_AUTH_TOKEN }}
+      - if: ${{ steps.release.outputs.release_created }}
+        run: |
+          gh release upload ${{ steps.release.outputs.tag_name}} dist/jsii/js/*.tgz
+          gh release upload ${{ steps.release.outputs.tag_name}} dist/jsii/python/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
