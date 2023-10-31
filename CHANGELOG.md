@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.16](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.15...v1.0.16) (2023-10-31)
+
+
+### Bug Fixes
+
+* **project:** fixed artifacts in pipeline ([bc67b3f](https://github.com/t0bst4r/cdk-skill-management/commit/bc67b3f0d173103089f3594bb2dedf87ce3b92a5))
+
 ## [1.0.15](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.14...v1.0.15) (2023-10-31)
 
 
