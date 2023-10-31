@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.19](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.18...v1.0.19) (2023-10-31)
+
+
+### Bug Fixes
+
+* **project:** final project workflow fix ([3556c64](https://github.com/t0bst4r/cdk-skill-management/commit/3556c64914de2cf9971dd7fb91cba919a700723f))
+
 ## [1.0.18](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.17...v1.0.18) (2023-10-31)
 
 
