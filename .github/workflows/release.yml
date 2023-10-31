@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - id: release
         uses: google-github-actions/release-please-action@v3
@@ -88,6 +89,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ release, build ]
     steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -97,7 +102,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Add artifacts to the release
-        run: gh release upload ${{ steps.release.outputs.tag_name }} ./cdk-skill-management*.tgz
+        run: gh release upload ${{ needs.release.outputs.tag_name }} ./cdk-skill-management*.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -118,7 +123,7 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_AUTH_TOKEN }}
       - name: Add artifacts to the release
-        run: gh release upload ${{ steps.release.outputs.tag_name }} ./cdk-skill-management-*
+        run: gh release upload ${{ needs.release.outputs.tag_name }} ./cdk-skill-management-*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
