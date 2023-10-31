@@ -12,7 +12,7 @@ node_modules/
 .jsii
 .tsconfig.json
 dist/
-docs/
+API.*.md
 
 # Other
 .tmp/

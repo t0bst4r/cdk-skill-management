@@ -5,8 +5,8 @@
   "scripts": {
     "setup": "husky install",
     "docs": "rimraf ./docs && npm run docs:js && npm run docs:py",
-    "docs:js": "jsii-docgen -l typescript -o ./docs/API.js.md",
-    "docs:py": "jsii-docgen -l python -o ./docs/API.py.md",
+    "docs:js": "jsii-docgen -l typescript -o ./API.js.md",
+    "docs:py": "jsii-docgen -l python -o ./API.py.md",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "npm run build:jsii && npm run build:handler",

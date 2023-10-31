@@ -18,6 +18,7 @@ Your library for creating and managing Alexa Skills via CloudFormation using AWS
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
+- [Changelog](CHANGELOG.md)
 
 ## Installation
 
@@ -41,8 +42,8 @@ pip install cdk-skill-management
 To use this library in your AWS CDK project, import and instantiate the classes you need.
 
 You can find the API-Documentation in [GitHub Pages](https://t0bst4r.github.io/cdk-skill-management/):
-- [TypeScript](docs/API.js.md)
-- [python](docs/API.py.md)
+- [TypeScript](API.js.md)
+- [python](API.py.md)
 
 
 ### Regional restrictions
