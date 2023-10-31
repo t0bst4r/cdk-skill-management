@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.22](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.21...v1.0.22) (2023-10-31)
+
+
+### Bug Fixes
+
+* **project:** added missing permission to publish documentation ([5e2ec3a](https://github.com/t0bst4r/cdk-skill-management/commit/5e2ec3a0157d76a61fc0b500c4b613aed0618e5d))
+
 ## [1.0.21](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.20...v1.0.21) (2023-10-31)
 
 
