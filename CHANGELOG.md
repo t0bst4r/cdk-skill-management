@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.17](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.16...v1.0.17) (2023-10-31)
+
+
+### Bug Fixes
+
+* **project:** split workflow to multiple publish jobs ([b9c2178](https://github.com/t0bst4r/cdk-skill-management/commit/b9c2178299bc1b1c1c98afa292078d5a6be0ad73))
+
 ## [1.0.16](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.15...v1.0.16) (2023-10-31)
 
 
