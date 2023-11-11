@@ -11,7 +11,7 @@ node_modules/
 .npmignore
 .jsii
 dist/
-API.*.md
+docs/
 
 # Other
 .tmp/

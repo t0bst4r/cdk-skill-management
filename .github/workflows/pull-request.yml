@@ -7,28 +7,20 @@ on:
       - synchronize
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
+      - run: git fetch
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install
-        run: npm ci
-      - name: Lint
-        run: npm run lint
-      - name: Build
-        run: npm run build
-      - name: Test
-        run: npm test
-      - name: Package
-        run: npm run package
+          cache: npm
+      - run: npm ci
+      - run: npm run commitlint -- --from ${{ github.event.pull_request.base.sha }} --verbose
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test
+      - run: npm run package
+      - run: npm run documentation

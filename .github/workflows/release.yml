@@ -1,96 +1,69 @@
-name: Release Please
+name: Release
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write
-  pull-requests: write
-  pages: write
-  id-token: write
-
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
-    steps:
-      - id: release
-        uses: google-github-actions/release-please-action@v3
-        with:
-          release-type: node
-          package-name: cdk-skill-management
-
   build:
-    if: needs.release.outputs.release_created
     runs-on: ubuntu-latest
-    needs: release
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test
+      - uses: actions/upload-artifacts@v3
+        with:
+          name: build-output
+          path: |
+            dist/
+            .jsii
+            tsconfig.json
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Install
-        run: npm ci
-      - name: Lint
-        run: npm run lint
-      - name: Build
-        run: npm run build
-      - name: Test
-        run: npm test
-      - name: Package
-        run: npm run package
-      - name: Upload Node
-        uses: actions/upload-artifact@v3
+      - uses: actions/download-artifacts@v3
         with:
-          name: node
+          name: build-output
+      - run: ls -la
+      - run: exit 1
+      - run: npm ci
+      - run: npm run release
+      - run: npm run package
+      - run: npm run documentation
+      - uses: actions/upload-artifacts@v3
+        with:
+          name: release-output-js
           path: dist/jsii/js
           retention-days: 1
-      - name: Upload Python
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifacts@v3
         with:
-          name: python
+          name: release-output-py
           path: dist/jsii/python
           retention-days: 1
-
-  build-documentation:
-    if: needs.release.outputs.release_created
-    runs-on: ubuntu-latest
-    needs: release
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
-      - uses: actions/configure-pages@v3
-      - name: Install
-        run: npm ci
-      - name: Create API Documentation
-        run: npm run docs
-      - name: Build Documentation
-        uses: actions/jekyll-build-pages@v1
-        with:
-          destination: './docs'
-      - name: Upload Documentation
-        uses: actions/upload-pages-artifact@v1
+      - uses: actions/upload-pages-artifact@v1
         with:
           path: './docs'
 
   publish-npm:
-    if: needs.release.outputs.release_created
     runs-on: ubuntu-latest
-    needs: [ release, build ]
+    needs: release
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -98,49 +71,38 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: node
-      - name: Publish NPM
-        run: npm publish ./cdk-skill-management*.tgz
+          name: release-output-js
+          path: dist
+      - run: npm publish ./*
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-      - name: Add artifacts to the release
-        run: gh release upload ${{ needs.release.outputs.tag_name }} ./cdk-skill-management*.tgz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish-pypi:
-    if: needs.release.outputs.release_created
     runs-on: ubuntu-latest
-    needs: [ release, build ]
+    needs: release
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: python
+          name: release-output-py
       - name: Publish PyPI
         run: |
           pip install twine
-          twine upload ./cdk-skill-management-*
+          twine upload ./*
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_AUTH_TOKEN }}
-      - name: Add artifacts to the release
-        run: gh release upload ${{ needs.release.outputs.tag_name }} ./cdk-skill-management-*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish-documentation:
-    if: needs.release.outputs.release_created
     runs-on: ubuntu-latest
-    needs: [ release, publish-npm, publish-pypi, build-documentation ]
+    needs: release
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy documentation
+      - name: Publish documentation
         id: deployment
         uses: actions/deploy-pages@v2
