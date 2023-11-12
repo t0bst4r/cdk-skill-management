@@ -79,7 +79,7 @@ jobs:
         with:
           name: release-output-js
           path: dist
-      - run: npm publish ./*
+      - run: npm publish ./dist/*
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
@@ -94,10 +94,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: release-output-py
+          path: dist
       - name: Publish PyPI
         run: |
           pip install twine
-          twine upload ./*
+          twine upload ./dist/*
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TWINE_AUTH_TOKEN }}
