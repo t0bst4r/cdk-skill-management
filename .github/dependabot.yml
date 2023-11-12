@@ -2,13 +2,13 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
+    ignore:
+      - dependency-name: aws-cdk-lib
+      - dependency-name: constructs
     schedule:
       interval: weekly
     groups:
       development-dependencies:
         dependency-type: "development"
-        exclude-patterns:
-          - "aws-cdk-lib"
-          - "constructs"
       production-dependencies:
         dependency-type: "production"
