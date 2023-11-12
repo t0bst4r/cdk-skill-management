@@ -6,7 +6,7 @@
       },
       "infile": "CHANGELOG.md"
     },
-    "./.release-it-plugin.cjs": {}
+    "./.release-it-plugin.mjs": {}
   },
   "git": {
     "push": true,
