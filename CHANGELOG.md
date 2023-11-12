@@ -1,5 +1,7 @@
 
 
+## 1.0.24 (2023-11-12)
+
 ## 1.0.23 (2023-11-12)
 
 ## [1.0.22](https://github.com/t0bst4r/cdk-skill-management/compare/v1.0.21...v1.0.22) (2023-10-31)
