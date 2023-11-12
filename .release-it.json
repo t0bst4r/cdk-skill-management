@@ -11,7 +11,8 @@
   "git": {
     "push": true,
     "commitMessage": "chore: release v${version}",
-    "requireCleanWorkingDir": false
+    "requireCleanWorkingDir": false,
+    "tagName": "v${version}"
   },
   "github": {
     "release": true
