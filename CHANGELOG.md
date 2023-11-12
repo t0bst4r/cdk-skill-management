@@ -1,5 +1,12 @@
 
 
+## 1.0.25 (2023-11-12)
+
+
+### Bug Fixes
+
+* dependabot and version ([45ac422](https://github.com/t0bst4r/cdk-skill-management/commit/45ac422fa281eff5a498b17c8371c3780c88d90f))
+
 ## 1.0.24 (2023-11-12)
 
 ## 1.0.23 (2023-11-12)
