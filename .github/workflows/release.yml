@@ -17,7 +17,7 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm run test
-      - uses: actions/upload-artifacts@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: build-output
           path: |
@@ -37,7 +37,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - uses: actions/download-artifacts@v3
+      - uses: actions/download-artifact@v3
         with:
           name: build-output
       - run: ls -la
@@ -46,12 +46,12 @@ jobs:
       - run: npm run release
       - run: npm run package
       - run: npm run documentation
-      - uses: actions/upload-artifacts@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: release-output-js
           path: dist/jsii/js
           retention-days: 1
-      - uses: actions/upload-artifacts@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: release-output-py
           path: dist/jsii/python
