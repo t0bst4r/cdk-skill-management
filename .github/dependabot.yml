@@ -4,3 +4,11 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    groups:
+      development-dependencies:
+        dependency-type: "development"
+        exclude-patterns:
+          - "aws-cdk-lib"
+          - "constructs"
+      production-dependencies:
+        dependency-type: "production"

@@ -18,7 +18,7 @@ Your library for creating and managing Alexa Skills via CloudFormation using AWS
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
-- [Changelog](CHANGELOG.md)
+- [Changelog](https://github.com/t0bst4r/cdk-skill-management/blob/main/CHANGELOG.md)
 
 ## Installation
 
@@ -126,10 +126,10 @@ export class MyStack extends cdk.Stack {
 ```
 
 ## Contributing
-We welcome contributions from the community. To contribute, please follow our [contribution guidelines](CONTRIBUTE.md).
+We welcome contributions from the community. To contribute, please follow our [contribution guidelines](https://github.com/t0bst4r/cdk-skill-management/blob/main/CONTRIBUTE.md).
 
 ## License
-This library is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+This library is licensed under the MIT License - see the [LICENSE](https://github.com/t0bst4r/cdk-skill-management/blob/main/LICENSE.txt) file for details.
 
 This library bundles `ask-smapi-sdk` and `ask-smapi-model` into a custom resource lambda function.
-Those are licensed under the Apache License 2.0 - see the [LICENSE-EXTERNAL](LICENSE-EXTERNAL.txt) for details.
+Those are licensed under the Apache License 2.0 - see the [LICENSE-EXTERNAL](https://github.com/t0bst4r/cdk-skill-management/blob/main/LICENSE-EXTERNAL.txt) for details.
