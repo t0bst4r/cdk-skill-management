@@ -96,6 +96,8 @@ exports[`SkillEndpointPermission 1`] = `
       "DependsOn": [
         "EndpointPermissionInitialSkillPermissionDF8BA4EA",
         "SkillPermissionAddPermissionCustomResourcePolicy40191D92",
+        "SkillPermissionRemovePermissionCustomResourcePolicyE0EF14B7",
+        "SkillPermissionRemovePermission83A11C0A",
       ],
       "Properties": {
         "Create": {
@@ -166,6 +168,8 @@ exports[`SkillEndpointPermission 1`] = `
     "SkillPermissionAddPermissionCustomResourcePolicy40191D92": {
       "DependsOn": [
         "EndpointPermissionInitialSkillPermissionDF8BA4EA",
+        "SkillPermissionRemovePermissionCustomResourcePolicyE0EF14B7",
+        "SkillPermissionRemovePermission83A11C0A",
       ],
       "Properties": {
         "PolicyDocument": {

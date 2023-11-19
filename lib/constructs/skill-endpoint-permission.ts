@@ -83,18 +83,19 @@ export class SkillEndpointPermission extends Construct implements ISkillEndpoint
     }
 
     const parent = new Construct(scope, id);
-    new AwsCustomResource(parent, 'RemovePermission', {
+    const removeOld = new AwsCustomResource(parent, 'RemovePermission', {
       policy: this.policy,
       onCreate: this.removePermissionCall(parent, skill),
       onDelete: this.addPermissionCall(parent),
       installLatestAwsSdk: false,
     });
-    new AwsCustomResource(parent, 'AddPermission', {
+    const addNew = new AwsCustomResource(parent, 'AddPermission', {
       policy: this.policy,
       onCreate: this.addPermissionCall(parent, skill),
       onDelete: this.removePermissionCall(parent, skill),
       installLatestAwsSdk: false,
     });
+    addNew.node.addDependency(removeOld);
     parent.node.addDependency(this.permission, this.handler);
     return parent;
   }
