@@ -35,7 +35,7 @@
   ],
   "exclude": [
     "node_modules",
-    "/home/runner/work/cdk-skill-management/cdk-skill-management/dist/lib/.types-compat",
+    "/Users/t0bst4r/Projects/t0bst4r/cdk-skill-management/dist/lib/.types-compat",
     "**/*.test.ts",
     "dist/**/*"
   ],
