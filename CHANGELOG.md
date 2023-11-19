@@ -1,5 +1,12 @@
 
 
+## 1.0.28 (2023-11-19)
+
+
+### Bug Fixes
+
+* **skill:** fixed dependencies within skill-endpoint-permission ([faa9a7b](https://github.com/t0bst4r/cdk-skill-management/commit/faa9a7bcd0a03ad2d247a79691c5e1e914d32dc4))
+
 ## 1.0.27 (2023-11-14)
 
 ## 1.0.26 (2023-11-12)
