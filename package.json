@@ -1,6 +1,6 @@
 {
   "name": "cdk-skill-management",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "CDK constructs to manage Alexa Skills",
   "scripts": {
     "setup": "husky install",
